@@ -1,0 +1,71 @@
+# Conky settings #
+background no
+update_interval 1
+cpu_avg_samples 2
+net_avg_samples 2
+override_utf8_locale yes
+double_buffer yes
+no_buffers yes
+text_buffer_size 2048
+#imlib_cache_size 0
+temperature_unit celsius
+
+# Window specifications #
+own_window_class Conky
+own_window yes
+own_window_type normal
+own_window_transparent yes
+own_window_argb_visual no
+own_window_argb_value 120
+own_window_hints undecorate,sticky,skip_taskbar,skip_pager,below
+
+border_inner_margin 0
+border_outer_margin 0
+border_width 2
+
+minimum_size 1265 90
+maximum_width 1270
+
+alignment tl
+gap_x 7
+gap_y 10
+
+# Graphics settings #
+draw_shades no
+draw_outline no
+draw_borders no
+draw_graph_borders no
+
+# Text settings #
+use_xft yes
+override_utf8_locale yes
+xftfont DejaVu Sans Condensed:size=7
+xftalpha 0.8
+uppercase no
+temperature_unit celsius
+
+# Colors settings #
+default_outline_color FAFAFA
+own_window_colour 171717
+default_color c4c4c4
+
+color0 6C9EAB
+color1 C4C4C4
+color2 6C9EAB
+color3 6C9EAB
+color4 C53100
+
+# Lua Load  #
+lua_load ~/conky/rings-v1.2.1.lua
+lua_draw_hook_pre ring_stats
+
+TEXT
+${font DejaVu Sans Condensed:size=7}${goto 30}${voffset 20}${color1}CPU${goto 140}RAM${goto 250}SWAP${goto 370}ROT  ${color2}${fs_size /} / ${fs_used_perc /}%${color1}${goto 510}USB
+${color2}${goto 30}${freq_g}GHz / ${cpu}%${color0}${goto 140}${memmax} / ${memperc}%${color3}${goto 250}${swapmax} / ${swapperc}%${color1}${goto 370}HOME  ${color4}${fs_size /home} / ${fs_used_perc /home}%${color3}${goto 510}${fs_size /media/usb0} / ${fs_used_perc /media/usb0}%
+${font DejaVu Sans Condensed:size=14}${color0}${goto 765}${voffset -29}${time %H}${font}${color1}${goto 830}DL  ${color2}${totaldown wlan0} / ${downspeed wlan0}${color1}${font DejaVu Sans Condensed:size=8}${alignr 518}${voffset -1}${time %A}
+${font DejaVu Sans Condensed:size=14}${color4}${goto 765}${voffset -5}${time %M}${font}${color1}${goto 830}${voffset -5}UP  ${color4}${totalup wlan0} / ${upspeed wlan0}${alignr 518}${time %B}  ${color2}${time %d}
+${color2}${font DejaVu Sans Condensed:bold:size=7}${voffset -30}${alignr 5}${execi 2 deadbeef --nowplaying "%t"}${color1}
+${color4}${alignr 5}${execi 2 deadbeef --nowplaying "%a"}
+${alignr 5}${execi 2 deadbeef --nowplaying "%b"}
+${font DejaVu Sans Condensed:size=7}${color1}${alignr 10}${execi 1 deadbeef --nowplaying "%e"}${offset 2}/${color1}${offset 2}${execi 1 deadbeef --nowplaying "%l"}
+${image ~/conky/m.png -p 1245,2 -s 18x18}
